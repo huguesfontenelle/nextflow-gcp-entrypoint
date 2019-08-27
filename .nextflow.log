@@ -1,0 +1,399 @@
+Aug-27 16:45:31.215 [main] DEBUG nextflow.cli.Launcher - $> nextflow -trace nextflow.cloud.google.pipelines run main.nf -profile gcp,entrypoint_image -work-dir 'gs://ngs-workdir/work' --outDir 'gs://ngs-workdir/Results'
+Aug-27 16:45:31.352 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 19.07.0
+Aug-27 16:45:31.363 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [friendly_meucci] - revision: ce21390f0b
+Aug-27 16:45:31.376 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/hugues/playground/NGS-304-gcp-entrypoint/nextflow.config
+Aug-27 16:45:31.377 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/hugues/playground/NGS-304-gcp-entrypoint/nextflow.config
+Aug-27 16:45:31.404 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `gcp,entrypoint_image`
+Aug-27 16:45:31.761 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [gcp, default_image, entrypoint_image]
+Aug-27 16:45:31.793 [main] DEBUG nextflow.Session - Session uuid: 6da1f131-eaa1-4fb6-af04-af8912b83e02
+Aug-27 16:45:31.793 [main] DEBUG nextflow.Session - Run name: friendly_meucci
+Aug-27 16:45:31.794 [main] DEBUG nextflow.Session - Executor pool size: 8
+Aug-27 16:45:36.974 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 19.07.0 build 5106
+  Created: 27-07-2019 13:22 UTC (15:22 CEST)
+  System: Mac OS X 10.14.6
+  Runtime: Groovy 2.5.6 on OpenJDK 64-Bit Server VM 11.0.2+9
+  Encoding: UTF-8 (UTF-8)
+  Process: 82749@Huguess-MacBook-Pro.local [10.15.16.187]
+  CPUs: 8 - Mem: 16 GB (148.7 MB) - Swap: 4 GB (1.3 GB)
+Aug-27 16:45:36.981 [main] DEBUG nextflow.Session - Work-dir: gs://ngs-workdir/work [Mac OS X]
+Aug-27 16:45:36.981 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/hugues/playground/NGS-304-gcp-entrypoint/bin
+Aug-27 16:45:37.080 [main] DEBUG nextflow.Session - Session start invoked
+Aug-27 16:45:37.216 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Aug-27 16:45:37.301 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: google-pipelines
+Aug-27 16:45:37.301 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'google-pipelines'
+Aug-27 16:45:37.311 [main] DEBUG nextflow.executor.Executor - [warm up] executor > google-pipelines
+Aug-27 16:45:37.317 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'google-pipelines' > capacity: 1000; pollInterval: 10s; dumpInterval: 5m 
+Aug-27 16:45:37.327 [main] DEBUG n.c.g.p.GooglePipelinesExecutor - [GPAPI] Pipelines Configuration: 'GooglePipelinesConfiguration{project='genuine-sector-223709', zone=[europe-west3-a], region=null, preemptible=false, remoteBinDir=null}'
+Aug-27 16:45:37.352 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > test -- maxForks: 8
+Aug-27 16:45:37.376 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Aug-27 16:45:37.376 [main] DEBUG nextflow.Session - Session await
+Aug-27 16:45:38.163 [Actor Thread 3] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] Task: test (1) - Instance Type: custom-1-1024
+Aug-27 16:45:38.498 [Task submitter] DEBUG n.c.g.p.GooglePipelinesFileCopyStrategy - [GPAPI] Constructed the following file copy staging commands: [gsutil -m -q cp -R result.txt gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true]
+Aug-27 16:45:39.106 [Task submitter] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] Task created > test (1) - Request: nextflow.cloud.google.pipelines.GooglePipelinesSubmitRequest(machineType:custom-1-1024, project:genuine-sector-223709, zone:[europe-west3-a], region:null, diskName:nf-pipeline-work, preemptible:false, taskName:nf-27fe5f87c406f3da7477e9fc8c4c23fd, containerImage:huguesfontenelle/ubuntu-with-entrypoint:latest, fileCopyImage:google/cloud-sdk:alpine, stagingScript:mkdir -p /work/27/fe5f87c406f3da7477e9fc8c4c23fd; (echo start | gsutil -q cp  -c - gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.begin || true; gsutil -m -q cp gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.sh /work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.sh; gsutil -m -q cp gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.run /work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.run) 2>&1 > /work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.log, mainScript:cd /work/27/fe5f87c406f3da7477e9fc8c4c23fd; bash .command.run 2>&1 | tee -a .command.log, unstagingScript:cd /work/27/fe5f87c406f3da7477e9fc8c4c23fd; [[ $GOOGLE_PIPELINE_FAILED == 1 || $NXF_DEBUG ]] && gsutil -m -q cp -R /google/ gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R result.txt gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; [[ -f .command.trace ]] && gsutil -m -q cp -R .command.trace gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .command.err gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .command.out gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .command.log gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .exitcode gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true, sharedMount:[disk:nf-pipeline-work, path:/work/, readOnly:false])
+Aug-27 16:45:40.315 [Task submitter] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] Task submitted > test (1) - Pipeline Id: 3025100004554858949; Operation:
+{
+    "done": false,
+    "metadata": {
+        "@type": "type.googleapis.com/google.genomics.v2alpha1.Metadata",
+        "pipeline": {
+            "actions": [
+                {
+                    "name": "nf-27fe5f87c406f3da7477e9fc8c4c23fd-stage",
+                    "imageUri": "google/cloud-sdk:alpine",
+                    "commands": [
+                        "bash",
+                        "-c",
+                        "mkdir -p /work/27/fe5f87c406f3da7477e9fc8c4c23fd; (echo start | gsutil -q cp  -c - gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.begin || true; gsutil -m -q cp gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.sh /work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.sh; gsutil -m -q cp gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.run /work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.run) 2>&1 > /work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.log"
+                    ],
+                    "entrypoint": "",
+                    "environment": {
+                        
+                    },
+                    "pidNamespace": "",
+                    "flags": [
+                        "ALWAYS_RUN",
+                        "IGNORE_EXIT_STATUS"
+                    ],
+                    "portMappings": {
+                        
+                    },
+                    "mounts": [
+                        {
+                            "disk": "nf-pipeline-work",
+                            "path": "/work/",
+                            "readOnly": false
+                        }
+                    ],
+                    "labels": {
+                        
+                    }
+                },
+                {
+                    "name": "nf-27fe5f87c406f3da7477e9fc8c4c23fd-main",
+                    "imageUri": "huguesfontenelle/ubuntu-with-entrypoint:latest",
+                    "commands": [
+                        "bash",
+                        "-c",
+                        "cd /work/27/fe5f87c406f3da7477e9fc8c4c23fd; bash .command.run 2>&1 | tee -a .command.log"
+                    ],
+                    "entrypoint": "",
+                    "environment": {
+                        
+                    },
+                    "pidNamespace": "",
+                    "flags": [
+                        "IGNORE_EXIT_STATUS"
+                    ],
+                    "portMappings": {
+                        
+                    },
+                    "mounts": [
+                        {
+                            "disk": "nf-pipeline-work",
+                            "path": "/work/",
+                            "readOnly": false
+                        }
+                    ],
+                    "labels": {
+                        
+                    }
+                },
+                {
+                    "name": "nf-27fe5f87c406f3da7477e9fc8c4c23fd-unstage",
+                    "imageUri": "google/cloud-sdk:alpine",
+                    "commands": [
+                        "bash",
+                        "-c",
+                        "cd /work/27/fe5f87c406f3da7477e9fc8c4c23fd; [[ $GOOGLE_PIPELINE_FAILED == 1 || $NXF_DEBUG ]] && gsutil -m -q cp -R /google/ gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R result.txt gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; [[ -f .command.trace ]] && gsutil -m -q cp -R .command.trace gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .command.err gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .command.out gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .command.log gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true; gsutil -m -q cp -R .exitcode gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd || true"
+                    ],
+                    "entrypoint": "",
+                    "environment": {
+                        
+                    },
+                    "pidNamespace": "",
+                    "flags": [
+                        "ALWAYS_RUN",
+                        "IGNORE_EXIT_STATUS"
+                    ],
+                    "portMappings": {
+                        
+                    },
+                    "mounts": [
+                        {
+                            "disk": "nf-pipeline-work",
+                            "path": "/work/",
+                            "readOnly": false
+                        }
+                    ],
+                    "labels": {
+                        
+                    }
+                }
+            ],
+            "resources": {
+                "projectId": "",
+                "regions": [
+                    
+                ],
+                "zones": [
+                    "europe-west3-a"
+                ],
+                "virtualMachine": {
+                    "machineType": "custom-1-1024",
+                    "preemptible": false,
+                    "labels": {
+                        "goog-pipelines-worker": "true"
+                    },
+                    "disks": [
+                        {
+                            "name": "nf-pipeline-work",
+                            "sizeGb": 500,
+                            "type": "",
+                            "sourceImage": ""
+                        }
+                    ],
+                    "accelerators": [
+                        
+                    ],
+                    "serviceAccount": {
+                        "email": "default",
+                        "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                        ]
+                    },
+                    "bootDiskSizeGb": 10,
+                    "cpuPlatform": "",
+                    "bootImage": "projects/cos-cloud/global/images/family/cos-stable",
+                    "nvidiaDriverVersion": "",
+                    "enableStackdriverMonitoring": false
+                }
+            },
+            "environment": {
+                
+            },
+            "timeout": "604800s"
+        },
+        "labels": {
+            "taskName": "nf-27fe5f87c406f3da7477e9fc8c4c23fd"
+        },
+        "events": [
+            
+        ]
+    },
+    "name": "projects/genuine-sector-223709/operations/3025100004554858949"
+}
+Aug-27 16:45:40.315 [Task submitter] INFO  nextflow.Session - [27/fe5f87] Submitted process > test (1)
+Aug-27 16:45:48.250 [Task monitor] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] New event > test (1) - Pipeline Id: 3025100004554858949
+[
+    {
+        "description": "Worker \"google-pipelines-worker-4de85a216484379a53a5376b82920b11\" assigned in \"europe-west3-a\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.WorkerAssignedEvent",
+            "zone": "europe-west3-a",
+            "instance": "google-pipelines-worker-4de85a216484379a53a5376b82920b11",
+            "machineType": "custom-1-1024"
+        },
+        "timestamp": "2019-08-27T14:45:41.236566846Z"
+    }
+]
+Aug-27 16:46:28.340 [Task monitor] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] New event > test (1) - Pipeline Id: 3025100004554858949
+[
+    {
+        "description": "Started pulling \"google/cloud-sdk:alpine\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.PullStartedEvent",
+            "imageUri": "google/cloud-sdk:alpine"
+        },
+        "timestamp": "2019-08-27T14:46:23.191175589Z"
+    }
+]
+Aug-27 16:46:38.257 [Task monitor] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] New event > test (1) - Pipeline Id: 3025100004554858949
+[
+    {
+        "description": "Stopped pulling \"google/cloud-sdk:alpine\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.PullStoppedEvent",
+            "imageUri": "google/cloud-sdk:alpine"
+        },
+        "timestamp": "2019-08-27T14:46:37.964813055Z"
+    }
+]
+Aug-27 16:46:48.288 [Task monitor] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] New event > test (1) - Pipeline Id: 3025100004554858949
+[
+    {
+        "description": "Started pulling \"huguesfontenelle/ubuntu-with-entrypoint:latest\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.PullStartedEvent",
+            "imageUri": "huguesfontenelle/ubuntu-with-entrypoint:latest"
+        },
+        "timestamp": "2019-08-27T14:46:38.354138293Z"
+    },
+    {
+        "description": "Stopped pulling \"huguesfontenelle/ubuntu-with-entrypoint:latest\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.PullStoppedEvent",
+            "imageUri": "huguesfontenelle/ubuntu-with-entrypoint:latest"
+        },
+        "timestamp": "2019-08-27T14:46:46.364718845Z"
+    },
+    {
+        "description": "Started running \"nf-27fe5f87c406f3da7477e9fc8c4c23fd-stage\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.ContainerStartedEvent",
+            "actionId": 1,
+            "portMappings": {
+                
+            },
+            "ipAddress": ""
+        },
+        "timestamp": "2019-08-27T14:46:47.013934057Z"
+    }
+]
+Aug-27 16:46:58.237 [Task monitor] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] New event > test (1) - Pipeline Id: 3025100004554858949
+[
+    {
+        "description": "Stopped running \"nf-27fe5f87c406f3da7477e9fc8c4c23fd-stage\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.ContainerStoppedEvent",
+            "actionId": 1,
+            "exitStatus": 0,
+            "stderr": ""
+        },
+        "timestamp": "2019-08-27T14:46:55.513117273Z"
+    },
+    {
+        "description": "Started running \"nf-27fe5f87c406f3da7477e9fc8c4c23fd-main\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.ContainerStartedEvent",
+            "actionId": 2,
+            "portMappings": {
+                
+            },
+            "ipAddress": ""
+        },
+        "timestamp": "2019-08-27T14:46:55.673191435Z"
+    },
+    {
+        "description": "Stopped running \"nf-27fe5f87c406f3da7477e9fc8c4c23fd-main\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.ContainerStoppedEvent",
+            "actionId": 2,
+            "exitStatus": 0,
+            "stderr": ""
+        },
+        "timestamp": "2019-08-27T14:46:56.991936419Z"
+    },
+    {
+        "description": "Started running \"nf-27fe5f87c406f3da7477e9fc8c4c23fd-unstage\"",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.ContainerStartedEvent",
+            "actionId": 3,
+            "portMappings": {
+                
+            },
+            "ipAddress": ""
+        },
+        "timestamp": "2019-08-27T14:46:57.135968638Z"
+    }
+]
+Aug-27 16:47:18.264 [Task monitor] TRACE n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] New event > test (1) - Pipeline Id: 3025100004554858949
+[
+    {
+        "description": "Stopped running \"nf-27fe5f87c406f3da7477e9fc8c4c23fd-unstage\": CommandException: No URLs matched: result.txt\nCommandException: 1 file/object could not be transferred.\nCommandException: No URLs matched: .command.err\nCommandException: 1 file/object could not be transferred.\nCommandException: No URLs matched: .command.out\nCommandException: 1 file/object could not be transferred.\nCommandException: No URLs matched: .exitcode\nCommandException: 1 file/object could not be transferred.",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.ContainerStoppedEvent",
+            "actionId": 3,
+            "exitStatus": 0,
+            "stderr": "CommandException: No URLs matched: result.txt\nCommandException: 1 file/object could not be transferred.\nCommandException: No URLs matched: .command.err\nCommandException: 1 file/object could not be transferred.\nCommandException: No URLs matched: .command.out\nCommandException: 1 file/object could not be transferred.\nCommandException: No URLs matched: .exitcode\nCommandException: 1 file/object could not be transferred.\n"
+        },
+        "timestamp": "2019-08-27T14:47:08.341095613Z"
+    },
+    {
+        "description": "Worker released",
+        "details": {
+            "@type": "type.googleapis.com/google.genomics.v2alpha1.WorkerReleasedEvent",
+            "zone": "europe-west3-a",
+            "instance": "google-pipelines-worker-4de85a216484379a53a5376b82920b11"
+        },
+        "timestamp": "2019-08-27T14:47:09.458353211Z"
+    }
+]
+Aug-27 16:47:18.266 [Task monitor] DEBUG n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] Task complete > test (1) - Start Time: 2019-08-27T14:45:41.236566846Z - End Time: 2019-08-27T14:47:09.458353211Z
+Aug-27 16:47:18.383 [Task monitor] DEBUG n.c.g.p.GooglePipelinesTaskHandler - [GPAPI] Cannot read exitstatus for task: `test (1)`
+java.nio.file.NoSuchFileException: gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.exitcode
+	at com.google.cloud.storage.contrib.nio.CloudStorageReadChannel.fetchSize(CloudStorageReadChannel.java:220)
+	at com.google.cloud.storage.contrib.nio.CloudStorageReadChannel.<init>(CloudStorageReadChannel.java:97)
+	at com.google.cloud.storage.contrib.nio.CloudStorageReadChannel.create(CloudStorageReadChannel.java:86)
+	at com.google.cloud.storage.contrib.nio.CloudStorageFileSystemProvider.newReadChannel(CloudStorageFileSystemProvider.java:347)
+	at com.google.cloud.storage.contrib.nio.CloudStorageFileSystemProvider.newByteChannel(CloudStorageFileSystemProvider.java:304)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:370)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:421)
+	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:420)
+	at com.google.cloud.storage.contrib.nio.CloudStorageFileSystemProvider.newInputStream(CloudStorageFileSystemProvider.java:437)
+	at java.base/java.nio.file.Files.newInputStream(Files.java:155)
+	at java.base/java.nio.file.Files.newBufferedReader(Files.java:2838)
+	at org.codehaus.groovy.runtime.NioGroovyMethods.newReader(NioGroovyMethods.java:1400)
+	at org.codehaus.groovy.runtime.NioGroovyMethods.getText(NioGroovyMethods.java:393)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.codehaus.groovy.runtime.metaclass.ReflectionMetaMethod.invoke(ReflectionMetaMethod.java:54)
+	at org.codehaus.groovy.runtime.metaclass.NewInstanceMetaMethod.invoke(NewInstanceMetaMethod.java:54)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.getProperty(MetaClassImpl.java:1859)
+	at groovy.lang.MetaClassImpl.getProperty(MetaClassImpl.java:3797)
+	at groovy.lang.DelegatingMetaClass.getProperty(DelegatingMetaClass.java:126)
+	at org.codehaus.groovy.runtime.InvokerHelper.getProperty(InvokerHelper.java:195)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaClassGetPropertySite.getProperty(PojoMetaClassGetPropertySite.java:36)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callGetProperty(AbstractCallSite.java:298)
+	at nextflow.cloud.google.pipelines.GooglePipelinesTaskHandler.readExitFile(GooglePipelinesTaskHandler.groovy:248)
+	at nextflow.cloud.google.pipelines.GooglePipelinesTaskHandler.checkIfCompleted(GooglePipelinesTaskHandler.groovy:208)
+	at nextflow.processor.TaskPollingMonitor.checkTaskStatus(TaskPollingMonitor.groovy:601)
+	at nextflow.processor.TaskPollingMonitor.checkAllTasks(TaskPollingMonitor.groovy:528)
+	at nextflow.processor.TaskPollingMonitor.pollLoop(TaskPollingMonitor.groovy:407)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:1011)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:994)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:97)
+	at nextflow.processor.TaskPollingMonitor$_start_closure2.doCall(TaskPollingMonitor.groovy:291)
+	at nextflow.processor.TaskPollingMonitor$_start_closure2.call(TaskPollingMonitor.groovy)
+	at groovy.lang.Closure.run(Closure.java:486)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Aug-27 16:47:18.385 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: test (1); status: COMPLETED; exit: null; error: -; workDir: gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd]
+Aug-27 16:47:18.484 [Task monitor] DEBUG nextflow.processor.TaskRun - Unable to dump output of process 'null' -- Cause: java.nio.file.NoSuchFileException: gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.out
+Aug-27 16:47:18.592 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'test (1)'
+
+Caused by:
+  Process `test (1)` terminated with an error exit status (null)
+
+Command executed:
+
+  echo hello > result.txt
+
+Command exit status:
+  null
+
+Command output:
+  (empty)
+
+Work dir:
+  gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+Aug-27 16:47:18.611 [main] DEBUG nextflow.Session - Session await > all process finished
+Aug-27 16:47:18.679 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `test (1)` terminated with an error exit status (null)
+Aug-27 16:47:18.779 [Task monitor] DEBUG nextflow.processor.TaskRun - Unable to dump output of process 'null' -- Cause: java.nio.file.NoSuchFileException: gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.out
+Aug-27 16:47:18.780 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Aug-27 16:47:18.856 [main] DEBUG nextflow.processor.TaskRun - Unable to dump output of process 'null' -- Cause: java.nio.file.NoSuchFileException: gs://ngs-workdir/work/27/fe5f87c406f3da7477e9fc8c4c23fd/.command.out
+Aug-27 16:47:18.860 [main] DEBUG nextflow.trace.StatsObserver - Workflow completed > WorkflowStats[succeedCount=0; failedCount=1; ignoredCount=0; cachedCount=0; succeedDuration=0ms; failedDuration=1m 30s; cachedDuration=0ms]
+Aug-27 16:47:19.029 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Aug-27 16:47:19.039 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
